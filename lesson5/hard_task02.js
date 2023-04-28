@@ -10,7 +10,9 @@ const second = +prompt("Введите второе число ");
 const minNum = (x, y) => {
   const xy = (x - (x % y)) / y;
   const yx = (y - (y % x)) / x;
-  return (xy * x + yx * y) / (xy + yx);
+  const max = (xy * x + yx * y) / (xy + yx);
+  const min = x + y - max;
+  return min;
 };
 
 console.log(minNum(first, second));
