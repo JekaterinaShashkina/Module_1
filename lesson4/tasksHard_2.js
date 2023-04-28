@@ -9,9 +9,13 @@
 
   if (salary > 0 && salary < 15000) {
     console.log(salary * 0.13);
-  } else if (salary >= 15000 && salary < 50000) {
+  }
+
+  if (salary >= 15000 && salary < 50000) {
     console.log(15000 * 0.13 + (salary - 15000) * 0.2);
-  } else if (salary >= 50000) {
+  }
+
+  if (salary >= 50000) {
     console.log(15000 * 0.13 + 35000 * 0.2 + (salary - 50000) * 0.3);
   } else {
     console.log("Неправильно ввели сумму, попробуйте еще раз");
