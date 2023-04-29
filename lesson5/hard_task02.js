@@ -16,3 +16,18 @@ const minNum = (x, y) => {
 };
 
 console.log(minNum(first, second));
+
+{
+  let xy = Math.sign(x - y) + 1;
+  let yx = Math.sign(y - x) + 1;
+  const max = (xy * x + yx * y) / 2;
+  const min = x + y - max;
+}
+
+{
+  const abs = (x) => (x ** 2) ** 0.5;
+
+  let maxAbs = (a + b + abs(a - b)) / 2;
+  let minAbs = (a + b - abs(a - b)) / 2;
+  console.log(minAbs);
+}
