@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const cart = {
   items: [],
@@ -8,9 +8,10 @@ const cart = {
   },
 
   calculateItemPrice() {
-    const totalPrice = this.items.reduce((currentTotal, item) => {
-      return currentTotal + item.price * item.amount;
-    }, 0);
+    const totalPrice = this.items.reduce(
+      (currentTotal, item) => currentTotal + item.price * item.amount,
+      0,
+    );
     return totalPrice;
   },
 
@@ -19,9 +20,9 @@ const cart = {
   },
   add(product, price, amount = 1) {
     const items = this.items.push({
-      product: product,
-      price: price,
-      amount: amount,
+      product,
+      price,
+      amount,
     });
     this.count = this.increaseCount(amount);
     return items;
@@ -38,8 +39,8 @@ const cart = {
   },
 };
 
-cart.add("Phone", 1000, 3);
-cart.add("IPhone", 1500, 1);
-cart.add("Tablet", 500, 4);
+cart.add('Phone', 1000, 3);
+cart.add('IPhone', 1500, 1);
+cart.add('Tablet', 500, 4);
 
 cart.print();
