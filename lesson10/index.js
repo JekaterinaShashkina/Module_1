@@ -1,4 +1,3 @@
-"use strict";
 import { listIPv4 } from "./ipv4.js";
 
 const ipv4Size = (list) => {
