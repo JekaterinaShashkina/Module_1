@@ -21,6 +21,7 @@
       language === 'EN' || language === 'ENG' ? FIGURES_ENG : FIGURES_RUS;
     return function start() {
       // сюда писать логику игры
+      const choices = () => {
       let userChoice = prompt('Камень, ножницы, бумага?');
       const computerChoiceNumber = getRandomIntInclusive(0, 2);
       let computerChoice = '';
@@ -32,9 +33,16 @@
         if (i === computerChoiceNumber) {
           computerChoice = FIGURES_RUS[i];
         }
-      }
       console.log(userChoice);
       console.log(`${userChoice[0]} ${computerChoice[0]}`);
+        return {userChoice, computerChoice};
+      }
+    }
+    let u = '';
+    let c = '';
+    u, c = choices()
+    console.log("new words: ", u, c);
+
 
       const checkResult = (u, c) => {
         if (u === null) {
@@ -42,19 +50,22 @@
         }
         if (c === u) {
           alert("it's a draw");
+          u, c = choices()
         } else if (
           (c === FIGURES_RUS[0] && u === FIGURES_RUS[2]) ||
           (c === FIGURES_RUS[2] && u === FIGURES_RUS[1]) ||
           (c === FIGURES_RUS[1] && u === FIGURES_RUS[0])
         ) {
           alert(`Вы выиграли\nВаш выбор: ${u}\nВыбор компьютера: ${c}`);
-          u = prompt('Камень, ножницы, бумага?');
+          u, c = choices()
         } else {
           alert(`Вы проиграли\nВаш выбор: ${u}\nВыбор компьютера: ${c}`);
+          u, c = choices()
+
         }
         checkResult(u, c);
       };
-      checkResult(userChoice, computerChoice);
+      checkResult(choices());
 
       // if (computerChoice === userChoice) {
       //   alert("it's a draw");
