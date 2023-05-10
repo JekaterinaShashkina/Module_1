@@ -10,52 +10,82 @@
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const getFigure = (lang) => {};
+  const getFigure = (lang) => {
+    const userQuestion = []
+    if (lang == FIGURES_ENG) {
+      userQuestion.push('Rock, scissors, paper?')
+      userQuestion.push('Want finish?')
+      userQuestion.push('Players result: ')
+      userQuestion.push('\nComputer result: ')
+      userQuestion.push('Its draw\nUser choice: ')
+      userQuestion.push('You win\nUser choice: ')
+      userQuestion.push('You lose\nUser choice: ')
+      userQuestion.push('\nComputer choice: ')
+    } else {
+      userQuestion.push('Камень, ножницы, бумага?')
+      userQuestion.push('Хотите закончить?')
+      userQuestion.push('Результат игрока: ')
+      userQuestion.push('\nРезультат компьютера: ')
+      userQuestion.push('Ничья\nВыбор игрока: ')
+      userQuestion.push('Вы выиграли\nВыбор игрока: ')
+      userQuestion.push('Вы проиграли\nВыбор игрока: ')
+      userQuestion.push('\nВыбор компьютера: ')
+
+    }
+    return userQuestion
+  };
 
   const game = (language) => {
     const result = {
       player: 0,
       computer: 0,
     };
+    language = prompt("If you want play in English enter ENG or EN").toUpperCase()
     const lang =
       language === 'EN' || language === 'ENG' ? FIGURES_ENG : FIGURES_RUS;
+    const questions = getFigure(lang)
     return function start() {
       // сюда писать логику игры
-      let userChoice = prompt('Камень, ножницы, бумага?');
+      let userChoice = prompt(questions[0]); 
+
       const computerChoiceNumber = getRandomIntInclusive(0, 2);
       let computerChoice = '';
       if (userChoice === null) {
-        let end = confirm('Хотите закончить?');
+        let end = confirm(questions[1]);
         alert(
-          `Результат игрока: ${result.player}\nРезультат компьютера ${result.computer}`,
+          questions[2] + result.player + questions[3] +result.computer
         );
         return end;
       }
-      for (let i = 0; i < FIGURES_RUS.length; i++) {
-        if (FIGURES_RUS[i].startsWith(userChoice.toLowerCase())) {
-          userChoice = FIGURES_RUS[i];
+      for (let i = 0; i < lang.length; i++) {
+        if (lang[i].startsWith(userChoice.toLowerCase())) {
+          userChoice = lang[i];
         }
         if (i === computerChoiceNumber) {
-          computerChoice = FIGURES_RUS[i];
+          computerChoice = lang[i];
         }
       }
 
       if (computerChoice === userChoice) {
+        
         alert(
-          `Ничья\nВаш выбор: ${userChoice}\nВыбор компьютера: ${computerChoice}`,
+          questions[4] + userChoice + questions[7] + computerChoice
+
         );
       } else if (
-        (computerChoice === FIGURES_RUS[0] && userChoice === FIGURES_RUS[2]) ||
-        (computerChoice === FIGURES_RUS[2] && userChoice === FIGURES_RUS[1]) ||
-        (computerChoice === FIGURES_RUS[1] && userChoice === FIGURES_RUS[0])
+        (computerChoice === lang[0] && userChoice === lang[2]) ||
+        (computerChoice === lang[2] && userChoice === lang[1]) ||
+        (computerChoice === lang[1] && userChoice === lang[0])
       ) {
         alert(
-          `Вы выиграли\nВаш выбор: ${userChoice}\nВыбор компьютера: ${computerChoice}`,
+          questions[5] + userChoice + questions[7] + computerChoice
+
         );
         result.player += 1;
       } else {
         alert(
-          `Вы проиграли\nВаш выбор: ${userChoice}\nВыбор компьютера: ${computerChoice}`,
+          questions[6] + userChoice + questions[7] + computerChoice
+
         );
         result.computer += 1;
       }
