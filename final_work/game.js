@@ -138,7 +138,6 @@
           (computerRsp === FIGURES_RUS[1] && playerRsp === FIGURES_RUS[0])
         ) {
           alert('Начинает игрок');
-
           playerGame();
           console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
@@ -156,14 +155,28 @@
           computerGame();
           console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
-            alert('Игра окончена');
-            return result;
+            const end = confirm('Игра окончена. Сыграем еще разок?');
+            console.log(end);
+            if (end) {
+              result.player = 5;
+              result.computer = 5;
+              start();
+            } else {
+              return end;
+            }
           }
           playerGame();
           console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
-            alert('Игра окончена');
-            return result;
+            const end = confirm('Игра окончена. Сыграем еще разок?');
+            console.log(end);
+            if (end) {
+              result.player = 5;
+              result.computer = 5;
+              start();
+            } else {
+              return end;
+            }
           }
         }
       }
