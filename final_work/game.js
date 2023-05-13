@@ -63,7 +63,7 @@
       };
       const computerGame = () => {
         const computerNumber = getRandomIntInclusive(1, result.computer);
-        console.log(computerNumber);
+        // console.log(computerNumber);
         const playerChoice = confirm('Число четное?');
         let choice = 0;
         playerChoice ? (choice = 0) : (choice = 1);
@@ -82,8 +82,9 @@
             `Вы проиграли. Остаток шариков у игрока: ${result.player}, у компьютера: ${result.computer} `,
           );
         }
-        console.log(result);
+        // console.log(result);
       };
+
       //!light level
       if (
         level === '' ||
@@ -141,42 +142,52 @@
           playerGame();
           console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
-            alert('Игра окончена');
-            return result;
+            const end = confirm('Игра окончена. Сыграем еще разок?');
+            // console.log(end);
+            if (end === true) {
+              result.player = 5;
+              result.computer = 5;
+              start();
+            }
+            return;
           }
           computerGame();
           console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
-            alert('Игра окончена');
-            return result;
+            const end = confirm('Игра окончена. Сыграем еще разок?');
+            // console.log(end);
+            if (end === true) {
+              result.player = 5;
+              result.computer = 5;
+              start();
+            }
+            return;
           }
         } else {
           alert('Начинает компьютер');
           computerGame();
-          console.log(result);
+          //   console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
             const end = confirm('Игра окончена. Сыграем еще разок?');
-            console.log(end);
-            if (end) {
+            // console.log(end);
+            if (end === true) {
               result.player = 5;
               result.computer = 5;
               start();
-            } else {
-              return end;
             }
+            return;
           }
           playerGame();
-          console.log(result);
+          //   console.log(result);
           if (result.player <= 0 || result.computer <= 0) {
             const end = confirm('Игра окончена. Сыграем еще разок?');
-            console.log(end);
-            if (end) {
+            // console.log(end);
+            if (end === true) {
               result.player = 5;
               result.computer = 5;
               start();
-            } else {
-              return end;
             }
+            return;
           }
         }
       }
